@@ -31,23 +31,24 @@ export default function Home() {
   }, [status]);
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       {status === "unauthenticated" && (
-        <h2 className="text-2xl font-bold mb-8 text-center">
+        <h1 className="text-2xl font-bold mb-8 text-center">
           Sign in to upload and watch reels{" "}
           <Link
             href="/login"
-            className="text-blue-500 hover:text-blue-600 cursor-pointer text-xl underline"
+            className="text-blue-600 hover:text-blue-700 cursor-pointer text-xl underline"
+            aria-label="Go to login page"
           >
             Login
           </Link>
-        </h2>
+        </h1>
       )}
 
       {status === "authenticated" && (
         <>
           {loading ? (
-            <h2 className="text-2xl font-semibold text-center">
+            <h2 className="text-2xl font-semibold text-center" role="status">
               Loading videos...
             </h2>
           ) : videos.length > 0 ? (
@@ -59,6 +60,6 @@ export default function Home() {
           )}
         </>
       )}
-    </main>
+    </div>
   );
 }
