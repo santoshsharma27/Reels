@@ -16,12 +16,6 @@ export default function Header() {
       await signOut({ redirect: false });
       setSignOutMessage("Successfully signed out!");
       setMenuOpen(false);
-
-      // Optionally, you can redirect after a short delay
-      setTimeout(() => {
-        setSignOutMessage(null);
-        window.location.href = "/"; // Redirect to home page
-      }, 1500);
     } catch (error) {
       console.log(error);
       setError("Failed to sign out");

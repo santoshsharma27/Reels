@@ -1,27 +1,41 @@
-import { IKVideo } from "imagekitio-next";
+import Link from "next/link";
 import { IVideo } from "@/models/Video";
+import { Video } from "@imagekit/next";
 
 export default function VideoComponent({ video }: { video: IVideo }) {
   return (
-    <div>
+    <div className="card bg-base-100 shadow hover:shadow-lg transition-all duration-300">
       <figure className="relative px-4 pt-4">
-        <div
-          className="rounded-lg overflow-hidden relative w-full"
-          style={{ aspectRatio: "12/16" }}
-        >
-          <IKVideo
-            path={video.videoUrl}
-            transformation={[{ height: "1920", width: "1080" }]}
-            controls={video.controls}
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <Link href={`/videos/${video._id}`} className="relative group w-full">
+          <div
+            className="rounded-xl overflow-hidden relative w-full"
+            style={{ aspectRatio: "9/16" }}
+          >
+            <Video
+              path={video.videoUrl}
+              src="/video.mp4"
+              transformation={[
+                {
+                  height: "1920",
+                  width: "1080",
+                },
+              ]}
+              controls={video.controls}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </Link>
       </figure>
 
-      <div className="p-4">
-        <p className="text-lg font-semibold text-white">{video.title}</p>
+      <div className="card-body p-4">
+        <Link
+          href={`/videos/${video._id}`}
+          className="hover:opacity-80 transition-opacity"
+        >
+          <h2 className="card-title text-lg">{video.title}</h2>
+        </Link>
 
-        <p className="text-sm text-gray-400 mt-1 line-clamp-2">
+        <p className="text-sm text-base-content/70 line-clamp-2">
           {video.description}
         </p>
       </div>

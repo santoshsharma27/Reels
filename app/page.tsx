@@ -31,9 +31,9 @@ export default function Home() {
   }, [status]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div>
       {status === "unauthenticated" && (
-        <h1 className="text-2xl font-bold mb-8 text-center">
+        <h1 className="text-2xl font-bold mb-8 text-center pt-32">
           Sign in to upload and watch reels{" "}
           <Link
             href="/login"
@@ -48,9 +48,9 @@ export default function Home() {
       {status === "authenticated" && (
         <>
           {loading ? (
-            <h2 className="text-2xl font-semibold text-center" role="status">
+            <p className="text-2xl font-semibold text-center" role="status">
               Loading videos...
-            </h2>
+            </p>
           ) : videos.length > 0 ? (
             <VideoFeed videos={videos} />
           ) : (
